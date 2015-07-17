@@ -2,40 +2,62 @@
 var moves = parseInt(0);
 var cardPair = [];
 
-// adds border to a matched pair
-function addBorder() {
-  $('.selected').addClass('matched');
+// shuffle cards
+function shuffle() {
+  var gameBoard = $('#game-cards');
+  console.log('gameBoard: ' + gameBoard.html());
+  var cards = gameBoard.children();
+  console.log(cards);
+  while (cards.length) {
+      gameBoard.append( cards.splice(Math.floor(Math.random() * cards.length), 1) );
+      console.log('gameBoard: ' + gameBoard.html());
+      console.log(cards);
+  }
+  console.log('shuffled!')
+}
+
+// reset variables
+function resetVars() {
+  moves = parseInt(0);
+  cardPair = [];
+  console.log('moves reset!')
 }
 
 // end of game sequence
 function winner() {
   // add border
-  addBorder();
-  // insert moves in congrats message
+  $('.selected').addClass('matched');
+  // insert moves in congrats
   $('#number-of-moves').html(moves);
-  // turn on congrats message
+  // show congrats
   $('#gameOver').css('display', 'inherit');
-  // pop up the alert including congrats message
+  // alert includes congrats
   alert( $('#gameOver').text() );
+  // reset variables
+  resetVars();
 }
 
-// begin
+// BEGIN
 $(function() {
 
-  // click a card
+  // shuffle cards
+  shuffle();
+
+  // select card
   $('.cards').click(function() {
 
   	// flip the card
   	$(this).addClass('selected');
     // save it
-    cardPair.push( $(this).attr('class') );
-    console.log('cardPair: ' + cardPair);
+    var cardType = $(this).attr('class');
+    cardPair.push(cardType);
+    console.log(cardPair);
     // count the up-cards
     var upCards = $('.selected').length;
-    console.log('upCards: ' + upCards);
 
   	// if it's the 2nd or 4th flip
   	if( upCards === 2 || upCards === 4 ) {
+      console.log('upCards: ' + upCards);
 
       // add a move
       moves = moves + 1;
@@ -43,40 +65,60 @@ $(function() {
 
         // and if it's the 4th flip
         if( upCards === 4 ) {
+          console.log('match!');
 
           // winner winner chicken dinner
           winner();
 
-        // otherwise it's the 2nd flip
-        } else {
+        } else { // otherwise it's the 2nd flip
 
-          // and if the 1st pair matches
+          // if the 1st pair matches
           if( cardPair[0] === cardPair[1] ) {
+            console.log('match!');
 
             // add border
-            addBorder();
+            $('.selected').addClass('matched');
           }
 
           // whether or not 1st pair matches, reset cardPair
           cardPair = [];
-          console.log('cardPair reset: ' + cardPair);
 
-        // wait for 3rd flip
-        }
+        } // end 2nd flip, wait for 3rd flip
 
-      // otherwise it's the 1st or 3rd flip
-      } else {
+      } else { // otherwise it's the 1st or 3rd flip
 
         // if there are no matching pairs
-        if( $('.matched').length; !== 2) {
+        if( $('.matched').length !== 2) {
 
-          // flip back any up cards
+          // flip back any other up cards
           $(this).siblings().removeClass('selected');
+          // recount the up cards
+          upCards = $('.selected').length;
+          console.log('upCards: ' + upCards);
+        } // this now counts as the 1st flip
 
-        // this now counts as the 1st flip
-        }
+      } // wait for 2nd or 4th flip
 
-      // wait for 2nd or 4th flip
-      }
-  });
-});
+  }); // end select card
+
+  // start button
+  $('#start').click(function() {
+    // reset variables
+    resetVars();
+    // flip all cards face down
+    $('.cards').removeClass('selected matched');
+    // hide congrats
+    $('#gameOver').css('display', 'none');
+    // shuffle cards
+    shuffle();
+  }); // end start button
+
+  // reset button
+  $('#reset').click(function() {
+    // hide congrats
+    $('#gameOver').css('display', 'none');
+    // flip all cards face down
+    $('.cards').removeClass('selected matched');
+  }); // end reset button
+
+}); // END
