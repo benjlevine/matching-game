@@ -73,6 +73,7 @@ $(function() {
 
           // flip back the 1st pair
           $(this).siblings().removeClass('selected');
+
         // this now counts as the 1st flip
         }
 
