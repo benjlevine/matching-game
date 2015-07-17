@@ -44,7 +44,7 @@ $(function() {
         // and if it's the 4th flip
         if( upCards === 4 ) {
 
-          // game over
+          // winner winner chicken dinner
           winner();
 
         // otherwise it's the 2nd flip
