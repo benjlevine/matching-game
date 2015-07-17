@@ -1,4 +1,4 @@
-/* 
+/*
 Project Name: Blank Template
 Client: Your Client
 Author: Your Name
@@ -7,7 +7,7 @@ Developer @GA in NYC
 
 
 /******************************************
-/* SETUP                   
+/* SETUP
 /*******************************************/
 
 /* Box Model Hack */
@@ -32,17 +32,17 @@ Developer @GA in NYC
 }
 
 .alignright {
-     float: right; 
+     float: right;
      padding: 0 0 10px 10px; /* note the padding around a right floated image */
 }
 
 .alignleft {
-     float: left; 
+     float: left;
      padding: 0 10px 10px 0; /* note the padding around a left floated image */
 }
 
 /******************************************
-/* BASE STYLES                   
+/* BASE STYLES
 /*******************************************/
 
 body {
@@ -57,7 +57,7 @@ h1{
      font-size: 48px;
 }
 /******************************************
-/* LAYOUT                   
+/* LAYOUT
 /*******************************************/
 
 /* Center the container */
@@ -77,7 +77,7 @@ footer {
 }
 
 /******************************************
-/* ADDITIONAL STYLES                   
+/* ADDITIONAL STYLES
 /*******************************************/
 #game{
      width: 430px;
@@ -106,8 +106,11 @@ footer {
      transform:scale(1.5);
 }
 
-.king.selected,.king.matched{background-image:url(../images/King.png);}
-.queen.selected,.queen.matched{background-image:url(../images/Queen.png);}
-
-
-
+.king.selected,
+.king.matched {
+  background-image: url(../images/King.png);
+}
+.queen.selected,
+.queen.matched {
+  background-image: url(../images/Queen.png);
+}
