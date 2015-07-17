@@ -67,11 +67,10 @@ $(function() {
       // otherwise it's the 1st or 3rd flip
       } else {
 
-        // if it's the 3rd flip and 1st pair doesn't match
-        var matchedCards = $('.matched').length;
-        if( upCards === 3 && matchedCards !== 2) {
+        // if there are no matching pairs
+        if( $('.matched').length; !== 2) {
 
-          // flip back the 1st pair
+          // flip back any up cards
           $(this).siblings().removeClass('selected');
 
         // this now counts as the 1st flip
