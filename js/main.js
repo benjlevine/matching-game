@@ -5,22 +5,17 @@ var cardPair = [];
 // shuffle cards
 function shuffle() {
   var gameBoard = $('#game-cards');
-  console.log('gameBoard: ' + gameBoard.html());
   var cards = gameBoard.children();
-  console.log(cards);
+
   while (cards.length) {
       gameBoard.append( cards.splice(Math.floor(Math.random() * cards.length), 1) );
-      console.log('gameBoard: ' + gameBoard.html());
-      console.log(cards);
   }
-  console.log('shuffled!')
 }
 
 // reset variables
 function resetVars() {
   moves = parseInt(0);
   cardPair = [];
-  console.log('moves reset!')
 }
 
 // end of game sequence
@@ -51,21 +46,17 @@ $(function() {
     // save it
     var cardType = $(this).attr('class');
     cardPair.push(cardType);
-    console.log(cardPair);
     // count the up-cards
     var upCards = $('.selected').length;
 
   	// if it's the 2nd or 4th flip
   	if( upCards === 2 || upCards === 4 ) {
-      console.log('upCards: ' + upCards);
 
       // add a move
       moves = moves + 1;
-      console.log('moves: ' + moves);
 
         // and if it's the 4th flip
         if( upCards === 4 ) {
-          console.log('match!');
 
           // winner winner chicken dinner
           winner();
@@ -74,7 +65,6 @@ $(function() {
 
           // if the 1st pair matches
           if( cardPair[0] === cardPair[1] ) {
-            console.log('match!');
 
             // add border
             $('.selected').addClass('matched');
